@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+<hr>
+<h1><p>Usted a finalizado su sesion!</p></h1>
+<hr>
+<a href="{% url 'principal'%}">Regresar al Inicio.</a>
+{% endblock %}

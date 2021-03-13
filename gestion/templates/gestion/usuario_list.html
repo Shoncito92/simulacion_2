@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Lista de usuarios existentes</h1>
+<hr>
+{% if usuario_list %}
+<ul>
+  {% for usuario in usuario_list %}
+  <li>
+    <a href="{{ usuario.get_absolute_url }}">{{ usuario.apellido }}, {{ usuario.nombre }}
+      ({{usuario.nacimiento}})</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Nose encuentran usuarios registrados en este apartado.</p>
+{% endif %}
+
+<hr>
+{% if perms.gestion.acceso_natural %}
+<button>
+  <a href="{% url 'usuario_create' %}">Crear nuevo usuario</a>
+</button>
+{% else %}
+<button>
+  <a>No posees privilegios para crear usuario</a>
+</button>
+{% endif %}
+
+
+
+{% endblock %}

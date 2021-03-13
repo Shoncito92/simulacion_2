@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Datos personales :</h2>
+<hr>
+<p>Nombre: {{perfil.nombre}} {{perfil.apellido}} {{perfil.email}}</p>
+<p>{% if perfil.Rut %} Cedula de Identidad : {{perfil.Rut}}{% endif %}</p>
+<p>Fecha de Nacimiento : {{perfil.Nacimiento}} </p>
+<p>Edad : {{perfil.Edad}} </p>
+<hr>
+<h3>Datos de contacto</h3>
+<hr>
+<p>Telefono : {{perfil.Telefono}} </p>
+<p>Direccion : {{perfil.Direccion}} </p>
+<p>Correo : {{perfil.email}} </p>
+<hr>
+<h3>Datos asociados</h3>
+<hr>
+<p>Ocupacion actual : {{perfil.Ocupacion}} </p>
+<p>Resumen de Examen : {{perfil.Resumen}} </p>
+<p>Historial Clinico : {{perfil.Historial}} </p>
+<p>Educacion previa : {{perfil.Educacion}} </p>
+
+<hr>
+
+{% if perms.gestion.acceso_natural %}
+<button>
+  <a href="{% url 'perfil_update' perfil.id %}">Editar perfil</a>
+</button>
+{% else %}
+<button>
+  <a>No posees privilegios para editar</a>
+</button>
+{% endif %}
+
+{% if perms.gestion.acceso_natural %}
+<button>
+  <a href="{% url 'perfil_delete' perfil.id %}">Eliminar perfil</a>
+</button>
+{% else %}
+<button>
+  <a>No posees privilegios para eliminar</a>
+</button>
+{% endif %}
+<hr>
+
+
+<div style="margin-left:20px;margin-top:20px">
+  <h4>Examenes en vigencia desigandos para el/la perfil :{{perfil.Nombre}}</h4>
+
+  <dl>
+    {% for examen in perfil.examen_set.all %}
+    <dt><a href="{% url 'examen-detail' examen.pk %}">{{examen}}</a></dt>
+    <dd>{{examen.summary}}</dd>
+    {% endfor %}
+  </dl>
+</div>
+{% endblock %}

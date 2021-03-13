@@ -1,0 +1,79 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container-fluid bg-principal" id="principal">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="jumbotron jumbotron-main">
+        <h2>texto</h2>
+        <h3>texto</h3>
+        <hr>
+        <p>Usted a visitado esta pagina {{ num_visits }}{% if num_visits == 1 %} vez{% else %} veces{% endif %}.</p>
+        <hr>
+        <p>Los registros contables son los siguientes :</p>
+        <ul>
+          <li><strong>examenes:</strong> {{ num_examenes }}</li>
+          <li><strong>pacientes:</strong> {{ num_pacientes }}</li>
+        </ul>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>
+
+<hr>
+<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div style="height: 600px" class="carousel-item active">
+      <img src="{% static 'img/example3.jpg' %}"" class=" d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <p>
+        <h4>
+          En Medical Register Online trabajamos
+          arduamente para darte la mejor calidad
+          de atencion. Nuestra informacion es
+          intuitiva e inequivoca.
+        </h4>
+        </p>
+      </div>
+    </div>
+    <div style="height: 600px" class="carousel-item">
+      <img src="{% static 'img/example2.jpg' %}"" class=" d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <p>
+        <h4>
+          Contamos con la mas amplia red de medicina
+          del territorio nacional.
+          Con mas de 35 años de trayectoria.
+          Nuestros profesionales estan altamente capacitados
+          para todo tipo de examenes
+        </h4>
+        </p>
+      </div>
+    </div>
+    <div style="height: 600px" class="carousel-item">
+      <img src="{% static 'img/example4.jpg' %}"" class=" d-block w-100" alt="...">
+      <div class="carousel-caption">
+        <p>
+        <h4>
+          Nuestro objetivo es que tu logres tu cometido.
+          Prestamos servicios en mas de 250 sedes a lo largo
+          de todo Chile, con servicio de ambulancias 24/7
+        </h4>
+        </p>
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+<hr>
+
+{% endblock %}

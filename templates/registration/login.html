@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+<form method="post" action="{% url 'login' %}">
+  {% csrf_token %}
+  <div class="container">
+    <div class="row">
+      <div class="col-sm-3">
+        <hr>
+        <h1>LOGIN IN!</h1>
+        {% if form.errors %}
+        <p>Tu usuario y contraseña no coinciden. Intentalo otra vez.</p>
+        {% endif %}
+        {% if next %}
+        {% if user.is_authenticated %}
+        <p>Su cuenta no tiene acceso a este contenido. Para continuar,
+          porfavor ingresar con una cuenta con los permisos validos.</p>
+        {% else %}
+        <p>Profavor ingrese sus datos para poder ver esta pagina.</p>
+        {% endif %}
+        {% endif %}
+        <hr>
+      </div>
+      <div class="col-sm-9">
+        <div class="row">
+          <div class="col-8 col-sm-6">
+            <hr>
+            <div>
+              <td>{{ form.username.label_tag }}</td>
+              <td>{{ form.username }}</td>
+            </div>
+            <div>
+              <td>{{ form.password.label_tag }}</td>
+              <td>{{ form.password }}</td>
+            </div>
+            <div>
+              <input type="submit" value="login" />
+              <input type="hidden" name="next" value="{{ next }}" />
+              <hr>
+            </div>
+          </div>
+          <div class="col-4 col-sm-6">
+            <img src="{% static 'img/login.png' %}">
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</form>
+{% endblock %}

@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Datos personales :</h2>
+<hr>
+<p>Nombre: {{usuario.nombre}} {{usuario.apellido}} {{perfil.email}}</p>
+<p>{% if usuario.Rut %} Cedula de Identidad : {{usuario.Rut}}{% endif %}</p>
+<p>Fecha de Nacimiento : {{usuario.Nacimiento}} </p>
+<p>Edad : {{usuario.Edad}} </p>
+<hr>
+<h3>Datos de contacto</h3>
+<hr>
+<p>Telefono : {{usuario.Telefono}} </p>
+<p>Direccion : {{usuario.Direccion}} </p>
+<p>Correo : {{usuario.email}} </p>
+<hr>
+<h3>Datos asociados</h3>
+<hr>
+<p>Ocupacion actual : {{usuario.Ocupacion}} </p>
+<p>Resumen de Examen : {{usuario.Resumen}} </p>
+<p>Historial Clinico : {{usuario.Historial}} </p>
+<p>Educacion previa : {{usuario.Educacion}} </p>
+
+<hr>
+
+{% if perms.gestion.acceso_natural %}
+<button>
+  <a href="{% url 'usuario_update' usuario.id %}">Editar usuario</a>
+</button>
+{% else %}
+<button>
+  <a>No posees privilegios para editar</a>
+</button>
+{% endif %}
+
+{% if perms.gestion.acceso_natural %}
+<button>
+  <a href="{% url 'usuario_delete' usuario.id %}">Eliminar usuario</a>
+</button>
+{% else %}
+<button>
+  <a>No posees privilegios para eliminar</a>
+</button>
+{% endif %}
+<hr>
+
+
+<div style="margin-left:20px;margin-top:20px">
+  <h4>Examenes en vigencia desigandos para el/la usuario :{{usuario.Nombre}}</h4>
+
+  <dl>
+    {% for examen in usuario.examen_set.all %}
+    <dt><a href="{% url 'examen-detail' examen.pk %}">{{examen}}</a></dt>
+    <dd>{{examen.summary}}</dd>
+    {% endfor %}
+  </dl>
+</div>
+{% endblock %}

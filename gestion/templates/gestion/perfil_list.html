@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1>Lista de perfiles existentes</h1>
+<hr>
+{% if perfil_list %}
+<ul>
+  {% for perfil in perfil_list %}
+  <li>
+    <a href="{{ perfil.get_absolute_url }}">{{ perfil.apellido }}, {{ perfil.nombre }}
+      ({{perfil.nacimiento}})</a>
+  </li>
+  {% endfor %}
+</ul>
+{% else %}
+<p>Nose encuentran perfiles registrados en este apartado.</p>
+{% endif %}
+
+<hr>
+{% if perms.gestion.acceso_natural %}
+<button>
+  <a href="{% url 'perfil_create' %}">Crear nuevo perfil</a>
+</button>
+{% else %}
+<button>
+  <a>No posees privilegios para crear perfil</a>
+</button>
+{% endif %}
+
+
+
+{% endblock %}

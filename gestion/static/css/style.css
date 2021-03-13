@@ -1,0 +1,104 @@
+.grid-container {
+    display: grid;
+    grid-template-columns: 160px 1fr;
+    grid-template-rows: 80px 1fr 80px;
+    gap: 15px 60px;
+    grid-template-areas: "NAVBAR NAVBAR" "SIDEBAR CENTRALBAR" "FOOTERBAR FOOTERBAR";
+}
+
+.CENTRALBAR {
+    grid-area: CENTRALBAR;
+}
+
+.NAVBAR {
+    grid-area: NAVBAR;
+}
+
+.SIDEBAR {
+    grid-area: SIDEBAR;
+}
+
+.FOOTERBAR {
+    grid-area: FOOTERBAR;
+}
+
+body {
+    font-family: "Lato", sans-serif;
+}
+
+.sidenav {
+    height: 100%;
+    width: 215px;
+    position: fixed;
+    z-index: 1;
+    top: 65px;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    padding-top: 10px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 16px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #f1f1f1;
+}
+
+.main {
+    margin-left: 160px;
+    /* Same as the width of the sidenav */
+    font-size: 28px;
+    /* Increased text to enable scrolling */
+    padding: 0px 10px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
+}
+
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0px;
+    width: 100%;
+    background-color: #111;
+    color: white;
+    text-align: center;
+    padding: 5px;
+}
+
+h4, h5, h6, .navbar, .modal {
+    font-family: 'Helvetica', cursive;
+    font-size: 20px;
+}
+
+.bg-principal {
+    text-align: center;
+    background-image: url("/static/img/example5.jpg");
+    background-size: 200px;
+    padding: 15px;
+}
+
+.jumbotron {
+    color: white;
+    background: rgb(0, 0, 0);
+    /* Para navegadores antiguos */
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.carousel-caption{
+    padding: 1px;
+    color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0.479);
+}
