@@ -1,40 +1,13 @@
 from django.contrib import admin
-
+from .models import Usuario, Perfil, Genero, EstadoCivil
 # Register your models here.
 
-from .models import Usuario, Perfil, Genero, EstadoCivil
-
-
-admin.site.register(Genero)
-admin.site.register(EstadoCivil)
-admin.site.register(Usuario)
-
-
-
-
-
+@admin.register(Usuario)
 class UsuarioAdmin(admin.ModelAdmin):
-    """Administration object for Author models.
-    Defines:
-     - fields to be displayed in list view (list_display)
-     - orders fields in detail view (fields),
-       grouping the date fields horizontally
-     - adds inline addition of books in author view (inlines)
-    """
-    list_display = ('apellido',
-                    'nombre')
-    fields = ['first_name', 'last_name', ('date_of_birth', 'date_of_death')]
+    list_display = ('username', 'nombre', 'apellido','email')
+    fields = ('username', 'email', 'nombre', 'apellido',)
 
-
-
+@admin.register(Perfil)
 class PerfilAdmin(admin.ModelAdmin):
-    """Administration object for Book models.
-    Defines:
-     - fields to be displayed in list view (list_display)
-     - adds inline addition of book instances in book view (inlines)
-    """
-    list_display = ('usuario', 'email', 'rut')
-
-
-
-admin.site.register(Perfil, PerfilAdmin)
+    list_display = ('usuario', 'rut')
+    fields =('usuario', 'es_representante', 'rut', 'rol', 'asamblea', 'comuna', 'genero', 'calle', 'numero_casa', 'fecha_creacion', 'fecha_modificacion', 'estado_civil', 'resumen', )

@@ -131,12 +131,11 @@ class Asamblea(models.Model):
 
 class Perfil(models.Model):
     usuario = models.OneToOneField( Usuario, on_delete=models.CASCADE, primary_key=True)
-    email = models.EmailField(max_length=60)
     es_representante = models.CharField(max_length=10)
     rut = models.CharField(max_length=10)
-    rol = models.ForeignKey(Rol, on_delete=models.CASCADE, null=True)
-    asamblea = models.ForeignKey(Asamblea, on_delete=models.CASCADE, null=True)
-    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, null=True)
+    rol = models.ForeignKey(Rol, on_delete=models.CASCADE, null=False)
+    asamblea = models.ForeignKey(Asamblea, on_delete=models.CASCADE, null=False)
+    comuna = models.ForeignKey(Comuna, on_delete=models.CASCADE, null=False)
     genero = models.ManyToManyField(Genero, help_text="Seleccione Genero/Sexo")
     calle = models.CharField(max_length=20)
     numero_casa = models.IntegerField()
